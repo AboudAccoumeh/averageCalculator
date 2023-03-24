@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alhamdulillah</title>
+	<style>
+		input{
+			display:block;
+		}
+		input.refinal,
+		input.refinal:focus{
+			border-color:red;
+			outline-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		B1100:<input type="text" crd6=true value="35" class="refinal">
+		B1101:<input type="text" crd6=false value="53">
+		B1102:<input type="text" crd6=false value="50">
+		C1100:<input type="text" crd6=true value="56" class="refinal">
+		M1109:<input type="text" crd6=true value="53" class="refinal">
+		P1104:<input type="text" crd6=true value="50">
+		<br><br>
+		B1103:<input type="text" crd6=false value="69.3">
+		B1105:<input type="text" crd6=false value="21.3" class="refinal">
+		C1102:<input type="text" crd6=true value="58.3">
+		C1103:<input type="text" crd6=true value="33.3" class="refinal">
+		M1111:<input type="text" crd6=false value="51.3" class="refinal">
+		P1105:<input type="text" crd6=true value="55.3">
+		S1100:<input type="text" crd6=false value="73.3">
+		<br><br>
+		<p id="average"></p>
+	</div>
+</body>
+<script>
+	var inputs = document.querySelectorAll("INPUT");
+	inputs.forEach(function(input){
+		input.addEventListener("input",function(){
+			var average = 0;
+			var total = 0;
+			for(var i=0;i<inputs.length;i++){
+				var multiplier = 1;
+				if(inputs[i].getAttribute("crd6") === "true"){multiplier = 2;}
+				average += parseFloat(inputs[i].value)*multiplier;
+				total+=1*multiplier;
+			}
+			average /= total;
+			document.getElementById("average").innerText = average;
+		});
+	});
+</script>
+</html>
